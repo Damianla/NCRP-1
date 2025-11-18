@@ -49,6 +49,10 @@ The standard per-read output:
 C   read_0001   1345   ...
 U   read_0002   0       ...
 ```
+Only the three columns are used:
+-column 1 : status(C or U)
+-column 2 : read ID
+-column 3 : taxid(0 for unclassified)
 2.overlap graph
 
 Building an overlap graph with minimap2(example) 
@@ -61,7 +65,6 @@ or
 ```
 minimap2 -x ava-pb -t 32 reads.fq reads.fq > overlaps.paf
 ```
-The file overlaps.paf is used by NCRP via --paf.
 
 You can provide the graph in two formats:
 - minimap2 PAF(--paf) : NCRP parses the file and builds an overlap graph,keeping the best overlap for each read pair.
@@ -104,10 +107,11 @@ python ncrp_main.py \
 --min-overlap       minimum overlap length (bp) to keep an edge (default: 130)
 --hist-bin          bin width (bp) for textual overlap histogram (default: 100)
 --output            output file for final labels (default: final_labels.tsv)
-
---plot-overlap-png  save overlap-length histogram as PNG
---plot-degree-png   save degree histogram as PNG
---plot-weight-png   save normalized weight histogram as PNG
---dpi               DPI for PNG figures (default: 300)
---logy              use log-scale on the y-axis of histograms
 ```
+### Main output files
+The main output is ncrp_final_labels.tsv(or the filename you specify with --output), with three columns
+```
+status   read_id   taxid
+```
+In addition, NCRP prints to stout:
+basic statistics on overlaps(number of raw records, filter edges, unique kept edges, etc.)
