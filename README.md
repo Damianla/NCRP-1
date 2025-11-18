@@ -43,8 +43,9 @@ conda activate ncrp
 NCRP expects two main inputs:
 
 1.classification file
-```
+
 The standard per-read output:
+```
 C   read_0001   1345   ...
 U   read_0002   0       ...
 ```
@@ -58,5 +59,43 @@ readA   readB   350
 readB   readC   420
 ...
 ```
-where the third column is the overlap length.Exactly one of --paf or --edges must be provided.
+where the third column is the overlap length. Exactly one of --paf or --edges must be provided.
+### Testing your NCRP installation
+After installing NCRP and preparing a small test dataset, you can run:
+```
+cd NCRP
+python ncrp_main.py \
+  --kraken tests/example.kraken \
+  --paf tests/example.paf \
+  --output tests/ncrp_labels.tsv
+```
+If the command finishes successfully and tests/ncrp_labels.tsv is created, your installation works.
 
+To see all available options:
+```
+python ncrp_main.py --help
+```
+### Base Usage
+```
+python ncrp_main.py \
+  --kraken path/to/reads.kraken \
+  --paf path/to/overlaps.paf \
+  --min-overlap 130 \
+  --hist-bin 100 \
+  --output ncrp_final_labels.tsv
+```
+### Important command-line options
+```
+--kraken            Kraken2 per-read output file (required)
+--paf               minimap2 PAF overlap file (optional; mutually exclusive with --edges)
+--edges             simple edge list "read1 read2 overlap" (optional; mutually exclusive with --paf)
+--min-overlap       minimum overlap length (bp) to keep an edge (default: 130)
+--hist-bin          bin width (bp) for textual overlap histogram (default: 100)
+--output            output file for final labels (default: final_labels.tsv)
+
+--plot-overlap-png  save overlap-length histogram as PNG
+--plot-degree-png   save degree histogram as PNG
+--plot-weight-png   save normalized weight histogram as PNG
+--dpi               DPI for PNG figures (default: 300)
+--logy              use log-scale on the y-axis of histograms
+```
