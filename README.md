@@ -1,21 +1,5 @@
-NCRP: a graph-based framework for improving long-read metagenomic classification via neighborhood-consistency refinement and label propagation on the overlap graph.
+# NCRP: a graph-based framework for improving long-read metagenomic classification via neighborhood-consistency refinement and label propagation on the overlap graph.
 
-- [Installation](#installation)
-  - [With Conda](#with-conda)
-    - [From yaml file](#from-yaml-file)
-- [Input files](#input-files)
-- [Testing your NCRP installation](#testing-your-ncrp-installation)
-- [Basic Usage](#basic-usage)
-- [Main output files](#main-output-files)
-- [Advanced usage](#advanced-usage)
-  - [Using an edge list instead of PAF](#using-an-edge-list-instead-of-paf)
-  - [Tuning overlap and plotting diagnostics](#tuning-overlap-and-plotting-diagnostics)
-- [Simulation script](#simulation-script)
-  - [Reference preparation](#reference-preparation)
-  - [Basic usage](#simulation-basic-usage)
-- [Citation](#citation)
-
----
 
 ## Installation
 
@@ -42,7 +26,7 @@ conda activate ncrp
 ### Input file
 NCRP expects two main inputs:
 
-1.classification file
+#### 1.classification result file
 
 The standard per-read output:
 ```
@@ -50,9 +34,10 @@ C   read_0001   1345   ...
 U   read_0002   0       ...
 ```
 Only the three columns are used:
--column 1 : status(C or U)
--column 2 : read ID
--column 3 : taxid(0 for unclassified)
+
+- column 1 : status(C or U)
+- column 2 : read ID
+- column 3 : taxid(0 for unclassified)
 2.overlap graph
 
 Building an overlap graph with minimap2(example) 
