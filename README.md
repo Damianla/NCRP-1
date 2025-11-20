@@ -38,11 +38,9 @@ Only the three columns are used:
 - column 1 : status(C or U)
 - column 2 : read ID
 - column 3 : taxid(0 for unclassified)
-2.overlap graph
+#### 2.overlap graph
 
-Building an overlap graph with minimap2(example) 
-
-For long reads(ONT/PacBio HiFi), a typical command is : 
+Building an overlap graph with minimap2(example). For long reads(ONT/PacBio HiFi), a typical command is : 
 ```
 minimap2 -x ava-ont -t 32 reads.fq reads.fq > overlaps.paf
 ```
