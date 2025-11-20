@@ -1,5 +1,4 @@
-# NCRP: a graph-based framework for improving long-read metagenomic classification via neighborhood-consistency refinement and label propagation on the overlap graph.
-
+# NCRP: a graph-based framework for improving long-read metagenomic classification 
 
 ## Installation
 
